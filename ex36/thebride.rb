@@ -64,12 +64,14 @@ module Bride
         dead("The bride catches up to you and eats you alive.")
       elsif response == "run" && bride_weak
         bride_alive = false
+        puts("You are able to successfully escape.")
         win("the bride")
       elsif response == "fight" && !bride_weak
         puts "You punch the bride in the face. She falls over."
         bride_weak = true
       elsif response == "fight" && bride_weak
         bride_alive = false
+        puts "You punch the bride again and she disintegrates into a cloud of dust."
         win("the bride")
       end
     end

@@ -3,7 +3,7 @@ require "./merman.rb"
 
 def start
   puts "You are staying in a cabin in the woods for a weekend trip."
-  puts "After hiking all day, you and your friends decide to relax in the basement at night."
+  puts "After hiking all day, you and your friends decide to relax in the basement."
   puts "There is an assortment of items around."
   puts "Do you want to take a look at them? yes or no"
 
@@ -20,7 +20,7 @@ def start
 end
 
 def pick_items
-  puts "There is a vintage wedding dress with a gorgeous necklace on a mannequin."
+  puts "On a mannequin, there is a vintage wedding dress and a gorgeous necklace."
   puts "On a table, there is a conch shell."
   puts "Which do you you look at first?"
 
@@ -32,17 +32,17 @@ def pick_items
     Merman.start()
   else
     puts "You didn't pick any of the items."
-    game_end("You'e so boring that your friends kick you out of the house.")
+    dead("You'e so boring that your friends kick you out of the house.")
   end
 end 
 
 def win(monster_killed)
-  puts "You won against #{monster_killed}. You win!"
+  puts "You successfully faced off against #{monster_killed}. You win!"
   exit(0)
 end
 
 def dead(reason)
-  puts reason << " Good job!"
+  puts reason << " Game over!"
   exit(0)
 end
 
