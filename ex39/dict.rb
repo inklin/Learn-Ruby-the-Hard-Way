@@ -38,7 +38,7 @@ module Dict
     bucket.each_with_index do |kv, i|
       k, v = kv
       # if the key in the key-value pair matches the argument key, 
-      # return the index, key, vand value
+      # return the index, key, and value
       if key == k
         return i, k, v
       end
@@ -50,6 +50,7 @@ module Dict
   end
 
   def Dict.get(aDict, key, default=nil)
+    assert 
     # Gets the value in a bucket for the given key, or the default.
     i, k, v = Dict.get_slot(aDict, key, default=default)
     # returns value or nil
@@ -69,6 +70,7 @@ module Dict
     else
       # if a value does not exist for that key,
       # we push the key-value pair to the bucket array
+      # each individual bucket entry looks like [key, value]
       bucket.push([key, value])
     end
   end
@@ -83,7 +85,7 @@ module Dict
     # note: index goes from 0 to bucket.length - 1
     # that's why the range is exclusive
     (0...bucket.length).each do |i|
-      # get the key and value at the index
+      # get the key and value at the index ([key, value])
       k, v = bucket[i]
       # if the key is the one we want to delete
       if key == k
@@ -104,6 +106,14 @@ module Dict
         # go through each key-value pair in the bucket
         # and print it to the screen
         bucket.each { |k, v| puts k, v}
+      end
+    end
+  end
+
+  def Dict.dump(aDict)
+    aDict.each do |bucket|
+      if bucket
+        puts bucket
       end
     end
   end
