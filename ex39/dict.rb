@@ -50,7 +50,7 @@ module Dict
   end
 
   def Dict.get(aDict, key, default=nil)
-    assert 
+    
     # Gets the value in a bucket for the given key, or the default.
     i, k, v = Dict.get_slot(aDict, key, default=default)
     # returns value or nil

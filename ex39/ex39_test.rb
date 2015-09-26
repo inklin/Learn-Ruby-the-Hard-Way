@@ -2,7 +2,7 @@ require './dict.rb'
 
 # create a mapping of state to abbreviation
 states = Dict.new()
-Dic.set(states, 'Oregon', 'OR')
+Dict.set(states, 'Oregon', 'OR')
 Dict.set(states, 'Florida', 'FL')
 Dict.set(states, 'California', 'CA')
 Dict.set(states, 'New York', 'NY')
