@@ -1,5 +1,15 @@
 ## Animal is-a object
 class Animal
+
+  def animal?()
+    true
+  end
+
+  def say_hello(sound=nil)
+    puts "#{sound} #{sound}"
+  end
+
+  attr_reader :name
 end
 
 ## Dog is-a Animal
@@ -9,15 +19,24 @@ class Dog < Animal
     ## Dog has-a name
     @name = name
   end
+
+  def say_hello()
+    super("woof")
+  end
 end
 
 ## Cat is-a Animal
 class Cat < Animal
 
-  def initialze(name)
+  def initialize(name)
     ## Cat has-a name
     @name = name
   end
+
+  def say_hello()
+    super("meow")
+  end
+
 end
 
 ## Person is-a object
@@ -29,9 +48,28 @@ class Person
 
     ## Person has-a pet of some kind
     @pet = nil
+
+    ## Person has-a list of hobbies
+    @hobbies = []
+
+    ## Dietary Preferences
+    @preferences = {}
   end
 
-  attr_accessor :pet
+  attr_accessor :pet, :hobbies, :preferences
+
+  def describe()
+    puts "This person's name is #{@name}."
+    puts "#{@name}'s hobbies include:"
+
+    @hobbies.each { |hobby| puts hobby}
+
+    puts "#{@name}'s food preferences are:"
+
+    @preferences.each { |key, value| puts "#{key}: #{value}"}
+
+    puts "#{@name} has a pet named #{@pet.name}." unless @pet.nil?
+  end
 end
 
 ## Employee is-a Person
@@ -69,20 +107,31 @@ end
 ## rover is-a Dog
 rover = Dog.new("Rover")
 
-## satan is-a Cat
-satan = Cat.new("Satan")
+## paws is-a Cat
+paws = Cat.new("Paws")
 
 ## mary is-a Person
 mary = Person.new("Mary")
 
-## mary has-a pet satan
-mary.pet = satan
+## mary has-a pet paws
+mary.pet = paws
+
+## mary has knitting, running, scuba diving as her hobbies
+mary.hobbies = ['knitting', 'running', 'scuba diving']
+
+## mary's dietary preferences
+mary.preferences = {'coffee' => 'dark roast', 'eggs' => 'sunny side up', 'steak' => 'well done'}
+
+mary.describe()
 
 ## frank is-a Employee
 frank = Employee.new("Frank", 120000)
 
 ## frank has-a pet rover
 frank.pet = rover
+
+## frank's dietary preferences
+frank.preferences = {'coffee' => 'medium roast', 'eggs' => 'over easy', 'steak' => 'blue'}
 
 ## flipper is-a Fish
 flipper = Fish.new()
