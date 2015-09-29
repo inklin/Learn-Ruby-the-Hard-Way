@@ -63,7 +63,6 @@ class CentralCorridor < Scene
     puts "You are the last surviving member of your crew."
     puts "You need to get to the laser weapons armory to get the neutron bomb,"
     puts "and escape after setting up the spaceship to explode."
-    puts "-" * 10 
     puts "You run down the central corridor but a Gothon suddenly jumps out and blocks your path."
     puts "He's blocking the door to the Weapons Armory. Quick, do something before he attacks you!"
 
@@ -106,13 +105,14 @@ class LaserWeaponArmory < Scene
     puts "Walking toward the neutron bomb, you realize it is under a security container. There is a keypad on the lock."
     puts "The keypad takes 3 digits. You know the first one is 8 and the last is 7."
     puts "You have 5 tries to guess the number before the bomb self-destructs."
-    puts "[Enter passcode]> "
+    print "[Enter passcode]> "
 
     guess = $stdin.gets.chomp
     password = "8#{rand(9)}7"
+    guess = password if guess == "cheat"
     try = 1
 
-    while guess!= password && try <= 5
+    while guess!= password && try < 5
       puts "Buzz! Wrong passcode!"
       try += 1
       print "[Enter passcode]> "
@@ -139,7 +139,7 @@ class TheBridge < Scene
     puts "You run onto the bridge with the neutron bomb."
     puts "A few Gothons are surprised and look at the bomb under your arm in fear."
     puts "They hold up their blasters but are wary of the bomb."
-    print "Do you throw the bomb at them?"
+    print "Do you throw the bomb at them? > "
 
     throw_bomb = $stdin.gets.chomp.downcase
 
@@ -163,18 +163,18 @@ end
 class EscapePod < Scene
   def enter()
     puts "You race toward the escape pods, you have to get off the ship before the bomb detonates!"
-    puts "You get to the escape pod chamber and see that there are 5 pods. Only two are undamaged."
+    puts "You get to the escape pod chamber and see that there are 5 pods. Only 1 is undamgaged."
     puts "You're not sure which pods are still functional, but there's no time to check."
     puts "Which one will you take?"
 
-    first_pod = rand(1..3)
-    second_pod = rand(4..5)
+    good_pod = rand(1..5)
 
     print "[pod#]> "
 
-    guess = $stdin.gets.chomp.to_i
+    guess = $stdin.gets.chomp
+    guess = good_pod if guess == "cheat"
 
-    if guess == first_pod || guess == second_pod
+    if guess.to_i == good_pod
       puts "You jump into pod %s and hit the eject button." %guess
       puts "The pod escapes into space, and heads back to planet Earth."
       puts "You look back and see the spaceship explode in a celebration of colors."
