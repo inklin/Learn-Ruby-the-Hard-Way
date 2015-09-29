@@ -104,14 +104,15 @@ class LaserWeaponArmory < Scene
     puts "You duck into the Armory and quickly shut the door behind you."
     puts "You glance around for any Gothons, but the Armory is silent."
     puts "Walking toward the neutron bomb, you realize it is under a security container. There is a keypad on the lock."
-    puts "The keypad takes 3 digits. You have 10 tries to guess the number before the bomb self-destructs."
-    puts "> "
+    puts "The keypad takes 3 digits. You know the first one is 8 and the last is 7."
+    puts "You have 5 tries to guess the number before the bomb self-destructs."
+    puts "[Enter passcode]> "
 
     guess = $stdin.gets.chomp
-    password = "#{rand(9)}#{rand(9)}#{rand(9)}"
+    password = "8#{rand(9)}7"
     try = 1
 
-    while guess!= password && try <= 10
+    while guess!= password && try <= 5
       puts "Buzz! Wrong passcode!"
       try += 1
       print "[Enter passcode]> "
@@ -166,26 +167,23 @@ class EscapePod < Scene
     puts "You're not sure which pods are still functional, but there's no time to check."
     puts "Which one will you take?"
 
-    first_pod = rand(1..5)
-    second_pod = rand(1..5)
-    while second_pod = first_pod
-      second_pod = rand(1..5)
-    end
+    first_pod = rand(1..3)
+    second_pod = rand(4..5)
+
     print "[pod#]> "
 
-    guess = $stdin.gets.chomp_to_i
+    guess = $stdin.gets.chomp.to_i
 
     if guess == first_pod || guess == second_pod
       puts "You jump into pod %s and hit the eject button." %guess
       puts "The pod escapes into space, and heads back to planet Earth."
       puts "You look back and see the spaceship explode in a celebration of colors."
-      puts "The Gothon ship nearby also goes up in flames."
       puts "You did it!"
       return 'win'
     else
       puts "You jump into pod %s and hit the eject button." %guess
       puts "The pod escapes out into space, then implodes as the hull ruptures."
-      puts "You are crashed into space jam."
+      puts "You are crushed into space jam."
       return 'death'
     end
 
