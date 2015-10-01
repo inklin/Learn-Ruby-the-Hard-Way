@@ -1,10 +1,8 @@
 class Zombie
   attr_accessor :health
-  attr_reader :type
 
   def initialize()
     @health = 15
-    @type = "zombie"
   end
 
   def attack(target)

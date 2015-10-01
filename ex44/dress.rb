@@ -16,6 +16,7 @@ class DressScene
       puts "You take a look at the necklace instead."
       return 'necklace'
     elsif choice == "2"
+      puts "Even though the dress itches more and more, you refuse to take it off."
       puts "You get a fatal allergic reaction from an old dress."
       return 'dead'
     else

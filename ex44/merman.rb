@@ -32,7 +32,7 @@ class MermanScene
     fight_choice = $stdin.gets.chomp
 
     if fight_choice == "1"
-      stairs()
+      climb_stairs()
     elsif fight_choice == "2"
       puts "You laugh but the Merman jumps up and eats you alive."
       return 'dead'
@@ -46,7 +46,7 @@ class MermanScene
     end
   end
 
-  def stairs()
+  def climb_stairs()
     puts "There are 20 steps to the top of the stairs."
     steps = []
 

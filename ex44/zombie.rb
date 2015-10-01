@@ -5,15 +5,15 @@ class ZombieScene
 
     puts "A chill fills the air and you look up to see that the window is open."
     puts "You walk over to close the window but a rotting hand reaches in!"
-    puts "It's a zombie! The zombie looks like a little girl, but she's missing an arm."
+    puts "It's a zombie!"
 
-    fight_or_flight()
+    fight()
   end
 
-  def fight_or_flight()
-    puts "The zombie crawls through the window, you're too late."
+  def fight()
+    puts "The zombie speedily crawls through the window, you're too late."
     puts "Your friends scream and scramble up the stairs."
-    puts "You can't run, the zombie is on you. You must fight back!"
+    puts "You can't run, the zombie is on you."
 
     while (@zombie.health > 0)
       print "Rest or fight? > "
