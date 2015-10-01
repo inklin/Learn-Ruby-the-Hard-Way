@@ -23,8 +23,8 @@ class Map
     'basement' => BasementScene.new(),
     'dress' => DressScene.new(),
     'necklace' => NecklaceScene.new(),
-    'merman' => MermanScene.new(),
     'zombie' => ZombieScene.new(),
+    'merman' => MermanScene.new(),
     'dead' => Dead.new(),
     'finish' => Finish.new()
   }

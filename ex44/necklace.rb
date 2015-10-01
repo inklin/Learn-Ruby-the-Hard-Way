@@ -33,20 +33,21 @@ class NecklaceScene
         return 'dead'
       elsif response == "run" && bride_weak
         bride_alive = false
-        puts "You are able to successfully escape."
-        return 'finish'
+        puts "You are able to successfully escape from the bride."
+        return 'zombie'
       elsif response == "fight" && !bride_weak
         puts "You punch the bride in the face. She falls over."
         bride_weak = true
       elsif response == "fight" && bride_weak
         bride_alive = false
         puts "You punch the bride again and she disintegrates into a cloud of dust."
-        return 'finish'
+        return 'zombie'
       else
         puts "Make a choice!> "
         response = $sdin.gets.chomp
       end
     end
+
   end
 
 end

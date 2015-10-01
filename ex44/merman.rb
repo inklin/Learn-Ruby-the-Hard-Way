@@ -1,15 +1,18 @@
 class MermanScene
 
   def enter()
-    puts "You put the shell to your ear and hear ocean waves."
-    puts "What is that? A faint scream in between crashing waves..."
     puts "You feel a damp sensation in your shoes. Do you look down?"
 
-    look = $stdin.gets.chomp.downcase
+    look = ""
 
-    if look == "yes" || look == "y"
+    while !(look == "yes" || look == "no")
+      print "> "
+      look = $stdin.gets.chomp.downcase
+    end
+
+    if look == "yes"
       fight()
-    elsif look == "no" || look == "n"
+    elsif look == "no"
       puts "You ignore the sensation. The merman sneaks up behind you..."
       puts "You have been devoured by the merman."
       return 'dead'
@@ -36,6 +39,10 @@ class MermanScene
     elsif fight_choice == "3"
       puts "You break the seashell and the merman lets out a loud wail."
       return 'finish'
+    else
+      puts "You debate your decision too long and the merman slowly inches closer."
+      puts "Suddenly, he jumps on you and gobbles you up!"
+      return 'dead'
     end
   end
 
