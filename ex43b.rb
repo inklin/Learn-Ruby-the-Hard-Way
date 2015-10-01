@@ -24,7 +24,7 @@ class Scene
   def enter()
     puts "You have entered a scene."
     puts "This enter method should be overwitten by sub-classes."
-    exit(1)
+    exit(0)
   end
 end
 
@@ -199,14 +199,14 @@ end
 class Lose < Scene
   def enter()
     puts "Sadly, this is the end of the game for you."
-    exit(1)
+    exit(0)
   end
 end
 
 class Finish < Scene
   def enter()
     puts "You are a winner!"
-    exit(1)
+    exit(0)
   end
 end
 
