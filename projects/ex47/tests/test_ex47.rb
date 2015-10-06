@@ -37,11 +37,11 @@ class TestName < Test::Unit::TestCase
   end
 
   def test_game()
-    basement = Room.new("Basement", "You can go to Dress.")
-    dress = Room.new("Dress", "You can go to Necklace, Dress, or Lose.")
-    necklace = Room.new("Necklace", "You can go to Zombie or Lose.")
-    zombie = Room.new("Zombie", "You can go to Merman or Lose.")
-    merman = Room.new("Merman", "You can go to Lose or Finish")
+    basement = Room.new("BasementScene", "You can go to Dress.")
+    dress = Room.new("DressScene", "You can go to Necklace, Dress, or Lose.")
+    necklace = Room.new("NecklaceScene", "You can go to Zombie or Lose.")
+    zombie = Room.new("ZombieScene", "You can go to Merman or Lose.")
+    merman = Room.new("MermanScene", "You can go to Lose or Finish")
     lose = Room.new("Lose", "You have lost the game. Nowhere to go.")
     finish = Room.new("Finish", "You have won the game. Nowhere to go.")
 
