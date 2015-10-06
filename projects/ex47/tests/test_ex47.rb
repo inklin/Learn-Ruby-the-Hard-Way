@@ -37,6 +37,7 @@ class TestName < Test::Unit::TestCase
   end
 
   def test_game()
+    # Integration test --> a series of steps 
     basement = Room.new("BasementScene", "You can go to Dress.")
     dress = Room.new("DressScene", "You can go to Necklace, Dress, or Lose.")
     necklace = Room.new("NecklaceScene", "You can go to Zombie or Lose.")
@@ -57,14 +58,12 @@ class TestName < Test::Unit::TestCase
     merman.add_paths({'lose' => lose, 'finish' => finish})
     ## lose and finish do not have paths to any other rooms
 
-    # test that basement goes to dress
-    assert_equal(basement.go('dress'), dress)
-    # test that dress goes to dress
-    assert_equal(dress.go('dress'), dress)
-    # test that dress goes to lose
-    assert_equal(dress.go('lose'), lose)
-    # test that dress goes to necklace, goes to zombie, goes to lose
-    assert_equal(dress.go('necklace').go('zombie').go('lose'), lose)
+    # test that basement goes to dress, goes to dress, goes to lose
+    assert_equal(basement.go('dress').go('dress').go('lose'), lose)
+    # test that dress goes to necklace goes to lose
+    assert_equal(dress.go('necklace').go('lose'), lose)
+    # test that necklace goes to zombie, goes to lose
+    assert_equal(necklace.go('zombie').go('lose'), lose)
     # test that zombie goes to merman, goes to lose
     assert_equal(zombie.go('merman').go('lose'), lose)
     # test that merman goes to finish
