@@ -7,8 +7,8 @@ class TestName < Test::Unit::TestCase
     gold = Room.new("GoldRoom",
       """This room has gold in it you can grab. There's alias_method 
       door to the north.""")
-    assert_equal(gold.name, "GoldRoom")
-    assert_equal(gold.paths, {})
+    assert_equal("GoldRoom", gold.name)
+    assert_equal({}, gold.paths)
   end
 
   def test_room_paths()
@@ -17,8 +17,8 @@ class TestName < Test::Unit::TestCase
     south = Room.new("South", "Test room in the south.")
 
     center.add_paths({'north' => north, 'south' => south})
-    assert_equal(center.go('north'), north)
-    assert_equal(center.go('south'), south)
+    assert_equal(north, center.go('north'))
+    assert_equal(south, center.go('south'))
   end
 
 
@@ -31,9 +31,9 @@ class TestName < Test::Unit::TestCase
     west.add_paths({'east' => start})
     down.add_paths({'up' => start})
 
-    assert_equal(start.go('west'), west)
-    assert_equal(start.go('west').go('east'), start)
-    assert_equal(start.go('down').go('up'), start)
+    assert_equal(west, start.go('west'))
+    assert_equal(start, start.go('west').go('east'))
+    assert_equal(start, start.go('down').go('up'))
   end
 
   def test_game()
@@ -59,15 +59,15 @@ class TestName < Test::Unit::TestCase
     ## lose and finish do not have paths to any other rooms
 
     # test that basement goes to dress, goes to dress, goes to lose
-    assert_equal(basement.go('dress').go('dress').go('lose'), lose)
+    assert_equal(lose, basement.go('dress').go('dress').go('lose'))
     # test that dress goes to necklace goes to lose
-    assert_equal(dress.go('necklace').go('lose'), lose)
+    assert_equal(lose, dress.go('necklace').go('lose'))
     # test that necklace goes to zombie, goes to lose
-    assert_equal(necklace.go('zombie').go('lose'), lose)
+    assert_equal(lose, necklace.go('zombie').go('lose'))
     # test that zombie goes to merman, goes to lose
-    assert_equal(zombie.go('merman').go('lose'), lose)
+    assert_equal(lose, zombie.go('merman').go('lose'))
     # test that merman goes to finish
-    assert_equal(merman.go('finish'), finish)
+    assert_equal(finish, merman.go('finish'))
   end
 
 end
