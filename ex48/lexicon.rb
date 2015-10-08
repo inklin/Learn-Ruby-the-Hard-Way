@@ -4,7 +4,7 @@ class Lexicon
     'verb' => ['go', 'eat', 'kill', 'jump', 'run',
       'walk'],
     'stop' => ['the', 'in', 'of', 'to', 'a', 'is'],
-    'noun' => ['bear', 'princess'],
+    'noun' => ['bear', 'princess', 'nose'],
     'name' => ['snoopy', 'linus', 'lucy']
   }
 
