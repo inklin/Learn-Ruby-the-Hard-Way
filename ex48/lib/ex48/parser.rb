@@ -85,7 +85,7 @@ class Parser
   end
 
   # parsing an object
-  def parse_object(word_list)
+  def self.parse_object(word_list)
     Parser.skip(word_list, 'stop')
     next_word = Parser.peek(word_list)
 
@@ -100,7 +100,7 @@ class Parser
 
   # parsing a noun
   # we have to handle an implied 'player' noun
-  def parse_subject(word_list)
+  def self.parse_subject(word_list)
     Parser.skip(word_list, 'stop')
     next_word = Parser.peek(word_list)
 
@@ -110,7 +110,6 @@ class Parser
     # we assume that the sentence is missing a subject
     # and we add a 'player' word for the subject
     elsif next_word == 'verb'
-      puts "player matched to subject"
       return ['noun', 'player']
     else
       raise ParserError.new("Expected a verb next.")
@@ -119,7 +118,7 @@ class Parser
 
   # With the sentence structure S + V + O, 
   # parse the sentence 
-  def parse_sentence(word_list)
+  def self.parse_sentence(word_list)
     subject = Parser.parse_subject(word_list)
     verb = Parser.parse_verb(word_list)
     object = Parser.parse_object(word_list)
