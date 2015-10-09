@@ -49,10 +49,17 @@ class TestEx49 < Test::Unit::TestCase
   end
 
   def test_parse_sentence()
-    sentence = Parser.parse_sentence([['stop', 'the'], ['noun', 'bear'], ['verb', 'saw'], ['stop', 'the'], ['noun', 'castle']])
+    sentence = Parser.parse_sentence([['stop', 'the'], ['noun', 'bear'], ['verb', 'saw'], ['stop', 'the'], ['number', 2], ['noun', 'castle']])
     assert_equal("bear", sentence.subject)
     assert_equal("saw", sentence.verb)
     assert_equal("castle", sentence.object)
+    assert_equal(2, sentence.number)
+
+    result = Parser.parse_sentence([['verb', 'saw'], ['stop', 'the'], ['noun', 'castle']])
+    assert_equal("player", result.subject)
+    assert_equal("saw", result.verb)
+    assert_equal("castle", result.object)
+    assert_equal(1, result.number) 
   end
 
 end
