@@ -6,7 +6,7 @@
 
 <h2>Uploaded Images</h2>
 <div>
-  <% @pictures.each do |picture| %>
-    <img src="../<%= picture.sub('static', '') %>" />
+  <% pictures.each do |picture| %>
+    <img src="../<%= picture.sub('public/', '') %>" />
   <% end %>
 </div>
