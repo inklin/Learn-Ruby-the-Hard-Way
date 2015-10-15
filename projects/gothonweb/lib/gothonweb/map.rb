@@ -104,6 +104,44 @@ module Map
     into jam jelly.
     """)
 
+  THE_END_SHOOT = Room.new("The End",
+    """
+    Quick on the draw you yank out your blaster and fire it at the Gothon.
+    His clown costume is flowing and moving around his body, which throws
+    puts off your aim.  Your laser hits his costume but misses him entirely.  
+    This completely ruins his brand new costume his mother bought him, which
+    makes him fly into an insane rage and blast you repeatedly in the face until
+    you are dead.  Then he eats you.
+    """)
+
+  THE_END_DODGE = Room.new("The End",
+    """
+    Like a world class boxer you dodge, weave, slip and slide right
+    as the Gothon's blaster cranks a laser past your head.
+    In the middle of your artful dodge your foot slips and you
+    bang your head on the metal wall and pass out.
+    You wake up shortly after only to die as the Gothon stomps on
+    your head and eats you.
+    """)
+
+  THE_END_THROW = Room.new("The End",
+    """
+    In a panic you throw the bomb at the group of Gothons
+    and make a leap for the door.  Right as you drop it a
+    Gothon shoots you right in the back killing you.
+    As you die you see another Gothon frantically try to disarm
+    the bomb. You die knowing they will probably blow up when
+    it goes off.
+    """)
+
+  THE_END_BOMB = Room.new("The End",
+    """
+    The lock buzzes one last time and then you hear a sickening
+    melting sound as the mechanism is fused together.
+    You decide to sit there, and finally the Gothons blow up the
+    ship from their ship and you die.
+    """)
+
   GENERIC_DEATH = Room.new("death", "You died.")
 
   ESCAPE_POD.add_paths({
@@ -112,18 +150,18 @@ module Map
   })
 
   THE_BRIDGE.add_paths({
-    'throw the bomb' => GENERIC_DEATH,
+    'throw the bomb' => THE_END_THROW,
     'slowly place the bomb' => ESCAPE_POD
   })
 
   LASER_WEAPON_ARMORY.add_paths({
     '0132' => THE_BRIDGE,
-    '*' => GENERIC_DEATH
+    '*' => THE_END_BOMB
   })
 
   CENTRAL_CORRIDOR.add_paths({
-    'shoot!' => GENERIC_DEATH,
-    'dodge!' => GENERIC_DEATH,
+    'shoot!' => THE_END_SHOOT,
+    'dodge!' => THE_END_DODGE,
     'tell a joke' => LASER_WEAPON_ARMORY
   })
 
@@ -139,6 +177,10 @@ module Map
     'ESCAPE_POD' => ESCAPE_POD,
     'THE_END_WINNER' => THE_END_WINNER,
     'THE_END_LOSER' => THE_END_LOSER,
+    'THE_END_SHOOT' => THE_END_SHOOT,
+    'THE_END_DODGE' => THE_END_SHOOT,
+    'THE_END_THROW' => THE_END_THROW,
+    'THE_END_BOMB' => THE_END_BOMB,
     'START' => START
   }
 
@@ -152,5 +194,5 @@ module Map
     # Store the room in the session for later, using its name
     session[:room] = ROOM_NAMES.key(room)
   end
-  
+
 end

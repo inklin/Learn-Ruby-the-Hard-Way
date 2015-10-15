@@ -38,6 +38,24 @@ class TestMap < Test::Unit::TestCase
   end
 
   def test_gothon_game_map()
+    # From Start - Central Corridor
+    assert_equal(THE_END_SHOOT, START.go('shoot!'))
+    assert_equal(THE_END_DODGE, START.go('dodge!'))
+    assert_equal(LASER_WEAPON_ARMORY, START.go('tell a joke'))
+
+    # LASER WEAPON ARMORY
+    assert_equal(THE_BRIDGE, LASER_WEAPON_ARMORY.go('0132'))
+    assert_equal(THE_END_BOMB, LASER_WEAPON_ARMORY.go('*'))
+
+    # THE BRIDGE
+    assert_equal(THE_END_THROW, THE_BRIDGE.go('throw the bomb'))
+    assert_equal(ESCAPE_POD, THE_BRIDGE.go('slowly place the bomb'))
+
+    # ESCAPE POD
+    assert_equal(THE_END_WINNER, ESCAPE_POD.go('2'))
+    assert_equal(THE_END_LOSER, ESCAPE_POD.go('*'))
   end
 
+  def test_session_loading()
+  end
 end
