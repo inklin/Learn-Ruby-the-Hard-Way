@@ -20,6 +20,7 @@ module Map
     end
   end
 
+
   CENTRAL_CORRIDOR = Room.new("Central Corridor",
     """
     The Gothons of Planet Percal #25 have invaded your ship and destroyed
@@ -191,8 +192,8 @@ module Map
 
 
   def Map::save_room(session, room)
-    # Store the room in the session for later, using its name
-    session[:room] = ROOM_NAMES.key(room)
+  # Store the room in the session for later, using its name
+  session[:room] = ROOM_NAMES.key(room)
   end
-
 end
+

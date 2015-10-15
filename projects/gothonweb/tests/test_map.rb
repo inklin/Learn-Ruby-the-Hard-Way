@@ -57,5 +57,25 @@ class TestMap < Test::Unit::TestCase
   end
 
   def test_session_loading()
+    session = {}
+
+    # test load room for unspecified room
+    room = Map::load_room(session)
+    assert_equal(nil, room)
+
+    # test save room
+    Map::save_room(session, Map::START)
+    room = Map::load_room(session)
+    assert_equal(Map::START, room)
+
+    # Go to the Laser Weaspon Armory room
+    room = room.go('tell a joke')
+    assert_equal(Map::LASER_WEAPON_ARMORY, room)
+
+    # Save the Laser Weapon Armory room
+    # and load the session, checking to see it's the same
+    Map::save_room(session, room)
+    room = Map::load_room(session)
+    assert_equal(Map::LASER_WEAPON_ARMORY, room)
   end
 end
