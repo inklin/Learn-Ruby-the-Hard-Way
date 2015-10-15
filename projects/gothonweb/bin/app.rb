@@ -5,15 +5,13 @@ set :static, true
 set :public_folder, "public"
 set :views, "views"
 
-enable :sessions
-
 ## Get images and display
 def load_pictures
   return Dir.glob("public/images/*.{jpg,jpeg}")
 end
 
 get '/' do
-  redirect to('/upload/')
+  return "Hello World"
 end
 
 get '/hello/' do
