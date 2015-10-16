@@ -187,12 +187,17 @@ module Map
 
   def Map::load_room(session)
     # Given a session this will return the right room or nil
+
+    # session[:room] holds a value, we use this as the key
+    # to get the correct room in the ROOM_NAMES hash
     return ROOM_NAMES[session[:room]]
   end
 
-
+  # takes a room and a session as a parameter
   def Map::save_room(session, room)
-  # Store the room in the session for later, using its name
+  
+  # from the room, gets the key of that room in ROOM_NAMES hash
+  # assigns that key value to the session[:room]
   session[:room] = ROOM_NAMES.key(room)
   end
 end
