@@ -10,6 +10,7 @@ set :session_secret, 'BADSECRET'
 
 get '/' do
   session[:room] = 'START'
+  session[:tries] = 0
   redirect to('/game')
 end
 
@@ -25,6 +26,10 @@ end
 
 post '/game' do
   room = Map::load_room(session)
+
+  Map::update_room_tries(session, room)
+  Map::update_tries(session)
+  
   action = params[:action]
 
   if room

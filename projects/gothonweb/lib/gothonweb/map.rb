@@ -6,17 +6,33 @@ module Map
       @name = name
       @description = description
       @paths = {}
+      @tries = 0
+      @limit = 3
     end
 
     # these make it easy for you to access the variables
     attr_reader :name, :paths, :description
 
     def go(direction)
+      # If the answer is wrong, but can still retry
+      # restart the level
+      if direction == "*" && (can_retry)
+        return @paths["restart"]
+      end
+
       return @paths[direction]
     end
 
     def add_paths(paths)
       @paths.update(paths)
+    end
+
+    def update_tries(tries)
+      @tries = tries
+    end
+
+    def can_retry()
+      return @tries < @limit
     end
   end
 
@@ -156,6 +172,7 @@ module Map
   })
 
   LASER_WEAPON_ARMORY.add_paths({
+    'restart' => LASER_WEAPON_ARMORY,
     '0132' => THE_BRIDGE,
     '*' => THE_END_BOMB
   })
@@ -185,6 +202,14 @@ module Map
     'START' => START
   }
 
+  def Map::update_room_tries(session, room)
+    room.update_tries(session[:tries])
+  end
+
+  def Map::update_tries(session)
+    session[:tries] += 1
+  end
+
   def Map::load_room(session)
     # Given a session this will return the right room or nil
 
@@ -196,9 +221,12 @@ module Map
   # takes a room and a session as a parameter
   def Map::save_room(session, room)
   
-  # from the room, gets the key of that room in ROOM_NAMES hash
-  # assigns that key value to the session[:room]
-  session[:room] = ROOM_NAMES.key(room)
+    # from the room, gets the key of that room in ROOM_NAMES hash
+    # assigns that key value to the session[:room]
+    if (session[:room] != ROOM_NAMES.key(room))
+      session[:tries] = 0
+      session[:room] = ROOM_NAMES.key(room)
+    end
   end
 end
 
